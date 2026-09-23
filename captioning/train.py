@@ -19,11 +19,11 @@ os.environ["CUDA_VISIBLE_DEVICES"]="0"
 
 # save training log
 def write_txt(epoch, iteration, loss):
-    with open("/home/r/rishabhs/tasty_dataset/s2vt_pytorch/training_log.txt", 'a+') as f:
+    with open(os.environ.get("S2VT_ROOT", "/home/r/rishabhs/tasty_dataset/") + "s2vt_pytorch/training_log.txt", 'a+') as f:
         f.write("Epoch:[ %d ]\t Iteration:[ %d ]\t loss:[ %f ]\n" % (epoch, iteration, loss))
 
 def write_cap(epoch, iteration, loss, captions, caption):
-    with open("/home/r/rishabhs/tasty_dataset/s2vt_pytorch/caption_log.txt", 'a+') as f:
+    with open(os.environ.get("S2VT_ROOT", "/home/r/rishabhs/tasty_dataset/") + "s2vt_pytorch/caption_log.txt", 'a+') as f:
         f.write("Epoch:[ %d ]\t Iteration:[ %d ]\t loss:[ %f ]\n" % (epoch, iteration, loss))
         write_in_english(captions,'GT Caption')
         write_in_english(caption,'Label Caption')
@@ -77,5 +77,5 @@ if __name__ == "__main__":
 
             if (i%100==0 and epoch%10==0):
                 pickle_file = 's2vt_epoch{}_iteration{}.pkl'.format(epoch,i)
-                torch.save(s2vt.state_dict(), "/home/r/rishabhs/tasty_dataset/s2vt_pytorch/" + pickle_file)
+                torch.save(s2vt.state_dict(), os.environ.get("S2VT_ROOT", "/home/r/rishabhs/tasty_dataset/") + "s2vt_pytorch/" + pickle_file)
                 print("Epoch: %d iter: %d save successed!" % (epoch, i))

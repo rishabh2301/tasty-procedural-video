@@ -16,7 +16,7 @@ os.environ["CUDA_VISIBLE_DEVICES"]="0,1"
 
 import sys
 
-scriptpath = "/home/r/rishabhs/tasty_dataset/i3d_edit.py"
+scriptpath = os.environ.get("S2VT_ROOT", "/home/r/rishabhs/tasty_dataset/") + "i3d_edit.py"
 sys.path.append(os.path.abspath(scriptpath))
 
 import numpy as np

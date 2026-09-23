@@ -1,0 +1,11 @@
+# 2019-era stack; versions are indicative, not pinned exactly as used then.
+torch>=1.1
+torchvision>=0.3
+numpy>=1.16
+scikit-learn>=0.21
+opencv-python>=4.1
+Pillow>=6.0
+imageio>=2.5
+
+# features/i3d_features.py only (TF1-era I3D checkpoints)
+# tensorflow==1.15

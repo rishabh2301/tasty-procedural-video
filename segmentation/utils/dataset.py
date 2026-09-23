@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 
+import os
 import numpy as np
 import random
 import json
@@ -14,7 +15,7 @@ class Dataset(object):
         self.transcript = dict()
         self.shuffle = shuffle
         self.idx = 0
-        cluster_labels = json.load(open('/home/rishabhs/NeuralNetwork-Viterbi/' + "recipe_labels_cluster.json","r"))
+        cluster_labels = json.load(open(os.environ.get("TASTY_PROJECT_ROOT", "/home/rishabhs/NeuralNetwork-Viterbi/") + "recipe_labels_cluster.json","r"))
         # read features for each video        
         for video in video_list:
             self.features[video] = np.load(base_path +"ALL_RECIPES/" + video + '/resnet50.npy').T

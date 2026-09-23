@@ -1,5 +1,6 @@
 #!/usr/bin/python
 
+import os
 import numpy as np
 import multiprocessing as mp
 import queue
@@ -39,14 +40,14 @@ for i in range(201):
         index2label[int(i)] = str(int(i))
 
 ### read test data #############################################################
-base_path = '/mnt/data/tasty_data/'
-video_list = [lines.rstrip('\n') for lines in open( '/home/rishabhs/NeuralNetwork-Viterbi/' + 'TEST_SET.txt')]
+base_path = os.environ.get("TASTY_DATA_ROOT", "/mnt/data/tasty_data/")
+video_list = [lines.rstrip('\n') for lines in open( os.environ.get("TASTY_PROJECT_ROOT", "/home/rishabhs/NeuralNetwork-Viterbi/") + 'TEST_SET.txt')]
 dataset = Dataset(base_path, video_list, shuffle = False)
 
 # load prior, length model, grammar, and network
 load_iteration = 5000
 log_prior = np.log( np.loadtxt('results/prior.iter-' + str(load_iteration) + '.txt') )
-grammar = PathGrammar('/home/rishabhs/NeuralNetwork-Viterbi/recipe_labels_cluster.json')
+grammar = PathGrammar(os.environ.get("TASTY_PROJECT_ROOT", "/home/rishabhs/NeuralNetwork-Viterbi/") + "recipe_labels_cluster.json")
 length_model = PoissonModel('results/lengths.iter-' + str(load_iteration) + '.txt', max_length = 2000)
 forwarder = Forwarder(dataset.input_dimension, dataset.n_classes)
 forwarder.load_model('results/network.iter-' + str(load_iteration) + '.net')

@@ -1,4 +1,5 @@
 
+import os
 from module import *
 from utils import *
 
@@ -8,7 +9,7 @@ BATCH_SIZE = 10
 if __name__ == "__main__":
     s2vt = S2VT(vocab_size=vovab_size, batch_size=BATCH_SIZE)
     s2vt = s2vt.cuda()
-    s2vt.load_state_dict(torch.load("/home/r/rishabhs/tasty_dataset/s2vt_pytorch/s2vt_epoch20_iteration100.pkl"))
+    s2vt.load_state_dict(torch.load(os.environ.get("S2VT_ROOT", "/home/r/rishabhs/tasty_dataset/") + "s2vt_pytorch/s2vt_epoch20_iteration100.pkl"))
     s2vt.eval()
     for i in range(10):
         video, caption, cap_mask = fetch_val_data(batch_size=BATCH_SIZE)

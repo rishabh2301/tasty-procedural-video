@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+
+# data, features and artefacts are never committed here
+*.npy
+*.pkl
+*.mp4
+*.jpg
+*.ckpt
+results/
+results_*/
+data_tasty/

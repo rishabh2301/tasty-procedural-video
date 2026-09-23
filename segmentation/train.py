@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 
+import os
 import numpy as np
 from utils.dataset import Dataset
 from utils.network import Trainer, Forwarder
@@ -8,8 +9,8 @@ from utils.viterbi import Viterbi
 
 ### read training data #########################################################
 print('read data...')
-base_path = '/mnt/data/tasty_data/'
-video_list = [lines.rstrip('\n') for lines in open( '/home/rishabhs/NeuralNetwork-Viterbi/' + 'TRAIN_SET.txt')]
+base_path = os.environ.get("TASTY_DATA_ROOT", "/mnt/data/tasty_data/")
+video_list = [lines.rstrip('\n') for lines in open( os.environ.get("TASTY_PROJECT_ROOT", "/home/rishabhs/NeuralNetwork-Viterbi/") + 'TRAIN_SET.txt')]
 dataset = Dataset(base_path, video_list, shuffle = True)
 print('done')
 

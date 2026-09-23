@@ -1,3 +1,4 @@
+import os
 import collections
 from sklearn.cluster import KMeans
 import numpy as np
@@ -49,7 +50,7 @@ if __name__ == "__main__":
         total_time = 0
         recipe_number_of_caps = dict()
         captions = []
-        recipe_path = '/mnt/data/tasty_data/'
+        recipe_path = os.environ.get("TASTY_DATA_ROOT", "/mnt/data/tasty_data/")
         all_recipes = [lines.rstrip('\n') for lines in open( recipe_path + 'ALL_RECIPES.txt')]
         tot_emb = []
         writer  = open("ignore_recipes.txt","w")
@@ -105,7 +106,7 @@ if __name__ == "__main__":
                 recipe_cluster_labels[recipe] = labels[prev:prev+recipe_number_of_caps[recipe]].tolist()
                 print("Labels",recipe_cluster_labels[recipe])
                 print("time taken {}".format(time.time()-st))
-                prev = recipe_number_of_caps[recipe]
+                prev += recipe_number_of_caps[recipe]
         with open(recipe_path + "recipe_cluster_labels_Refined.json",'w') as f:
                 json.dump(recipe_cluster_labels,f)
 

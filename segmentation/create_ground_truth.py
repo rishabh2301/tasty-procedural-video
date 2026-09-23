@@ -29,8 +29,8 @@ def read_label_frames(recipe_labels, dirnames_ii, annotation_steps, number_of_fr
 if __name__ == "__main__":
 
 
-    split_path = '/mnt/data/tasty_data/'
-    base_path = '/home/rishabhs/NeuralNetwork-Viterbi/'
+    split_path = os.environ.get("TASTY_DATA_ROOT", "/mnt/data/tasty_data/")
+    base_path = os.environ.get("TASTY_PROJECT_ROOT", "/home/rishabhs/NeuralNetwork-Viterbi/")
     test_lines  = [test_zero_lines.rstrip('\n')   for test_zero_lines   in open( split_path + 'ALL_RECIPES.txt')]
 
     all_recipes = [all_recipes.rstrip('\n')   for all_recipes  in open( split_path + 'ALL_RECIPES.txt')]

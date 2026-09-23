@@ -25,8 +25,8 @@ def read_transcript(recipe_labels, annotation_steps):
 
 if __name__ == "__main__":
 
-    base_path = '/home/rishabhs/NeuralNetwork-Viterbi/'
-    split_path = '/mnt/data/tasty_data/'
+    base_path = os.environ.get("TASTY_PROJECT_ROOT", "/home/rishabhs/NeuralNetwork-Viterbi/")
+    split_path = os.environ.get("TASTY_DATA_ROOT", "/mnt/data/tasty_data/")
 
     all_recipes = [all_recipes.rstrip('\n')   for all_recipes  in open( base_path + 'ALL_RECIPES.txt')]
 
@@ -54,7 +54,7 @@ if __name__ == "__main__":
 
         print(' [*] ', kki, ' ', all_recipes[kki])
 
-    with open("base_path" + 'recipe_transcript_final.json','w') as f:
+    with open(base_path + 'recipe_transcript_final.json','w') as f:
         json.dump(dict_trans,f)
 
     c = 0

@@ -68,10 +68,21 @@ The recipe ids used for training and evaluation: **3,621 train / 399 val / 399 t
 ## Caveats
 
 - **The dataset isn't here.** Tasty videos, extracted frames and precomputed features are not redistributed, so nothing in this repo runs standalone. The paper above describes how the data was collected.
-- **Paths are hard-coded**, pointing at the 2019 cluster layout (`/mnt/data/tasty_data/`, `/home/rishabhs/...`). Change them at the top of each script.
+- **Paths come from environment variables**, defaulting to the 2019 cluster layout:
+  `TASTY_DATA_ROOT` (recipe features and annotations), `TASTY_PROJECT_ROOT` (splits and cluster-label json), `S2VT_ROOT` (captioning checkpoints and logs).
+  `captioning/utils.py` still has paths hard-coded inline.
 - **`captioning/` expects a `data_process` module** (vocabulary building) from the upstream S2VT repo, which is not included here.
 - **Model checkpoints are not included.**
 - Written against Python 3.6 with PyTorch 1.x, TensorFlow 1.x (for I3D), OpenCV and scikit-learn.
+
+## Known issues
+
+Kept visible rather than quietly patched, since this is research code:
+
+- `captioning/` cannot be imported as is: `module.py` and `utils.py` expect a `data_process` module (vocabulary building) that lived in the upstream S2VT repo.
+- Magic numbers throughout: 201 classes in `segmentation/utils/`, `sample_size = 30800` and `n_steps = 80` in `captioning/train.py`, hard-coded row counts in the preprocessing loops.
+- No unit tests; correctness was checked against the paper results at the time, not by a test suite.
+- Two bugs found while publishing this repo have been fixed: the transcript writer wrote to a literal `"base_path"` filename, and `sentence_clustering.py` did not accumulate its per-recipe offset when slicing cluster labels.
 
 ## Credits and licensing
 
