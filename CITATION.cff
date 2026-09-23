@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+message: "If you use this code, please cite the paper below."
+title: "Tasty Procedural Video: Features, Captioning and Weakly Supervised Step Segmentation"
+authors:
+  - family-names: Saraf
+    given-names: Rishabh
+license: MIT
+repository-code: "https://github.com/rishabh2301/tasty-procedural-video"
+preferred-citation:
+  type: article
+  title: "Transferring Knowledge From Text to Video: Zero-Shot Anticipation for Procedural Actions"
+  authors:
+    - family-names: Sener
+      given-names: Fadime
+    - family-names: Saraf
+      given-names: Rishabh
+    - family-names: Yao
+      given-names: Angela
+  journal: "IEEE Transactions on Pattern Analysis and Machine Intelligence"
+  year: 2022
+  doi: "10.1109/TPAMI.2022.3218596"
